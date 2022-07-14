@@ -16,6 +16,8 @@ logsRouter.post(
 	logsController.createCredential
 );
 logsRouter.get("/credentials", logsController.getAllCredentials);
+logsRouter.get("/credentials/:id", logsController.getCredential);
+logsRouter.delete("/credentials/:id", logsController.deleteCredential);
 
 logsRouter.post("/notes");
 logsRouter.get("/notes");

@@ -20,3 +20,21 @@ export async function getAllCredentials(req: Request, res: Response) {
 
 	res.send(credentials);
 }
+
+export async function getCredential(req: Request, res: Response) {
+	const { id: userId }: { id: number } = res.locals.user;
+	const { id } = req.params;
+
+	const credential = await logsService.getCredential(userId, Number(id));
+
+	res.send(credential);
+}
+
+export async function deleteCredential(req: Request, res: Response) {
+	const { id: userId }: { id: number } = res.locals.user;
+	const { id } = req.params;
+
+	await logsService.deleteCredential(userId, Number(id));
+
+	res.sendStatus(200);
+}

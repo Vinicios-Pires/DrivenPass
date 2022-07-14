@@ -1,9 +1,13 @@
 import prisma from "../config/database.js";
 
-export async function findCredentialByTitle(title: string) {
-	const credential = await prisma.credential.findUnique({
+export async function findCredentialByTitleAndUserId(
+	id: number,
+	title: string
+) {
+	const credential = await prisma.credential.findFirst({
 		where: {
 			title,
+			userId: id,
 		},
 	});
 
@@ -36,4 +40,24 @@ export async function getAllCredentialsByUserId(id: number) {
 	});
 
 	return credentials;
+}
+
+export async function getCredentialByIdAndUserId(userId: number, id: number) {
+	const credential = await prisma.credential.findFirst({
+		where: {
+			id,
+			userId,
+		},
+	});
+
+	return credential;
+}
+
+export async function deleteCredentialById(userId: number, id: number) {
+	await prisma.credential.deleteMany({
+		where: {
+			id,
+			userId,
+		},
+	});
 }

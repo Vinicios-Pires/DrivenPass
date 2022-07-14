@@ -15,7 +15,10 @@ export async function createCredential(
 		throw { type: "Unprocessable Entity" };
 	}
 
-	const credentialExists = await logsRepository.findCredentialByTitle(title);
+	const credentialExists = await logsRepository.findCredentialByTitleAndUserId(
+		id,
+		title
+	);
 	if (credentialExists) throw { type: "Conflict" };
 
 	await logsRepository.createCredential(id, title, url, username, password);
@@ -24,4 +27,17 @@ export async function createCredential(
 export async function getAllCredentials(id: number) {
 	const credentials = await logsRepository.getAllCredentialsByUserId(id);
 	return credentials;
+}
+
+export async function getCredential(userId: number, id: number) {
+	const credential = await logsRepository.getCredentialByIdAndUserId(
+		userId,
+		id
+	);
+
+	return credential;
+}
+
+export async function deleteCredential(userId: number, id: number) {
+	await logsRepository.deleteCredentialById(userId, id);
 }
