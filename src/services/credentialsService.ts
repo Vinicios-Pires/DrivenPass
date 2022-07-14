@@ -39,6 +39,8 @@ export async function getCredential(userId: number, id: number) {
 		id
 	);
 
+	if (!credential) throw { type: "Not Found" };
+
 	return credential;
 }
 

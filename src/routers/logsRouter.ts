@@ -2,9 +2,6 @@ import { Router } from "express";
 
 const logsRouter = Router();
 
-logsRouter.post("/notes");
-logsRouter.get("/notes");
-
 logsRouter.post("/card");
 logsRouter.get("/card");
 
