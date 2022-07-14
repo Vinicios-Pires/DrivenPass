@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { createCredentialData } from "../services/logsService.js";
+import { createCredentialData } from "../services/credentialsService.js";
 
 export const credentialSchema = Joi.object<createCredentialData>({
 	title: Joi.string().required(),
