@@ -19,7 +19,7 @@ export async function createCredential(
 	title: string,
 	url: string,
 	username: string,
-	password: string
+	encryptedPassword: string
 ) {
 	await prisma.credential.create({
 		data: {
@@ -27,7 +27,7 @@ export async function createCredential(
 			title,
 			url,
 			username,
-			password,
+			password: encryptedPassword,
 		},
 	});
 }

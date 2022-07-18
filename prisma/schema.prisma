@@ -21,7 +21,7 @@ model user {
 
 model credential {
   id       Int    @id @default(autoincrement())
-  title    String @unique
+  title    String 
   url      String
   username String
   password String
@@ -33,7 +33,7 @@ model credential {
 
 model note {
   id     Int    @id @default(autoincrement())
-  title  String @unique
+  title  String 
   note   String
   userId Int
   user   user   @relation(fields: [userId], references: [id])
@@ -43,7 +43,7 @@ model note {
 
 model card {
   id       Int      @id @default(autoincrement())
-  title    String   @unique
+  title    String   
   number   Int
   name     String
   code     Int
