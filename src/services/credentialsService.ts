@@ -12,12 +12,12 @@ export async function createCredential(
 	password: string
 ) {
 	if (!title || !url || !username || !password) {
-		throw { type: "Unprocessable Entity" };
+		throw { type: "unprocessable_entity" };
 	}
 
 	const credentialExists =
 		await credentialsRepository.findCredentialByTitleAndUserId(id, title);
-	if (credentialExists) throw { type: "Conflict" };
+	if (credentialExists) throw { type: "conflict" };
 
 	await credentialsRepository.createCredential(
 		id,
@@ -39,7 +39,7 @@ export async function getCredential(userId: number, id: number) {
 		id
 	);
 
-	if (!credential) throw { type: "Not Found" };
+	if (!credential) throw { type: "not_found" };
 
 	return credential;
 }

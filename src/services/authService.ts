@@ -8,7 +8,7 @@ import { user } from "@prisma/client";
 export type userData = Omit<user, "id">;
 
 export async function signUp(email: string, password: string) {
-	if (!email || !password) throw { type: "Unprocessable Entity" };
+	if (!email || !password) throw { type: "unprocessable_entity" };
 
 	const userExists = await userRepository.findUserByEmail(email);
 	if (userExists) throw { type: "conflict" };
@@ -21,12 +21,12 @@ export async function signUp(email: string, password: string) {
 }
 
 export async function signIn(email: string, password: string) {
-	if (!email || !password) throw { type: "Unprocessable Entity" };
+	if (!email || !password) throw { type: "unprocessable_entity" };
 
 	const user = await userRepository.findUserByEmail(email);
 
 	if (!user || !bcrypt.compareSync(password, user.password))
-		throw { type: "Unauthorized" };
+		throw { type: "unauthorized" };
 
 	const token = jwt.sign(
 		{

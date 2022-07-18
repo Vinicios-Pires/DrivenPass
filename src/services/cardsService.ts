@@ -25,11 +25,11 @@ export async function createCard(
 		!virtual ||
 		!typeId
 	) {
-		throw { type: "Unprocessable Entity" };
+		throw { type: "unprocessable_entity" };
 	}
 
 	const cardExists = await cardsRepository.findCardByTitleAndUserId(id, title);
-	if (cardExists) throw { type: "Conflict" };
+	if (cardExists) throw { type: "conflict" };
 
 	await cardsRepository.createCard(
 		id,

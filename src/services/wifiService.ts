@@ -11,7 +11,7 @@ export async function createWifi(
 	password: string
 ) {
 	if (!title || !name || !password) {
-		throw { type: "Unprocessable Entity" };
+		throw { type: "unprocessable_entity" };
 	}
 
 	await wifiRepository.createWifi(id, title, name, password);

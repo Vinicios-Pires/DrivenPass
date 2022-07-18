@@ -7,8 +7,6 @@ import { userSchema } from "../schemas/authSchema.js";
 
 const authRouter = Router();
 
-// authRouter.use(validateSchemaMiddleware(userSchema));
-
 authRouter.post(
 	"/signup",
 	validateSchemaMiddleware(userSchema),
