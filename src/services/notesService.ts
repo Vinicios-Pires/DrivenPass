@@ -15,6 +15,9 @@ export async function createNote(id: number, title: string, note: string) {
 
 export async function getNotesByUserId(id: number) {
 	const notes = await notesRepository.getNotesByUserId(id);
+
+	if (notes.length === 0) throw { type: "not_found" };
+
 	return notes;
 }
 

@@ -20,11 +20,16 @@ export async function createCard(id: number, cardData: createCardData) {
 
 export async function getCards(id: number) {
 	const cards = await cardsRepository.getCards(id);
+
+	if (cards.length === 0) throw { type: "not_found" };
+
 	return cards;
 }
 
 export async function getCard(userId: number, id: number) {
 	const card = await cardsRepository.getCardByIdAndUserId(userId, id);
+
+	if (!card) throw { type: "not_found" };
 
 	return card;
 }
