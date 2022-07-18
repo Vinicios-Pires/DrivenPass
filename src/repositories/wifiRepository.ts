@@ -4,14 +4,14 @@ export async function createWifi(
 	id: number,
 	title: string,
 	name: string,
-	password: string
+	encryptedPassword: string
 ) {
 	await prisma.wifi.create({
 		data: {
 			userId: id,
 			title,
 			name,
-			password,
+			password: encryptedPassword,
 		},
 	});
 }
