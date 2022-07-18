@@ -6,7 +6,7 @@ export const cardSchema = Joi.object<createCardData>({
 	title: Joi.string().required(),
 	name: Joi.string().required(),
 	code: Joi.number().required(),
-	expireIn: Joi.date().required(),
+	expireIn: Joi.string().required(),
 	password: Joi.number().required(),
 	virtual: Joi.boolean().required(),
 	typeId: Joi.number().required(),

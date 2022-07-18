@@ -47,7 +47,7 @@ model card {
   number   Int
   name     String
   code     Int
-  expireIn DateTime
+  expireIn String
   password Int
   virtual  Boolean
   typeId   Int

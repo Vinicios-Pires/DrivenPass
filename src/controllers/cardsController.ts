@@ -6,28 +6,9 @@ import { createCardData } from "./../services/cardsService.js";
 
 export async function createCard(req: Request, res: Response) {
 	const { id }: { id: number } = res.locals.user;
-	const {
-		title,
-		number,
-		name,
-		code,
-		expireIn,
-		password,
-		virtual,
-		typeId,
-	}: createCardData = req.body;
+	const cardData: createCardData = req.body;
 
-	await cardsService.createCard(
-		id,
-		title,
-		number,
-		name,
-		code,
-		expireIn,
-		password,
-		virtual,
-		typeId
-	);
+	await cardsService.createCard(id, cardData);
 
 	res.sendStatus(201);
 }

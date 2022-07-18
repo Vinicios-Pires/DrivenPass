@@ -4,44 +4,18 @@ import { card } from "@prisma/client";
 
 export type createCardData = Omit<card, "id" | "userId">;
 
-export async function createCard(
-	id: number,
-	title: string,
-	number: number,
-	name: string,
-	code: number,
-	expireIn: Date,
-	password: number,
-	virtual: boolean,
-	typeId: number
-) {
-	if (
-		!title ||
-		!number ||
-		!name ||
-		!code ||
-		!expireIn ||
-		!password ||
-		!virtual ||
-		!typeId
-	) {
+export async function createCard(id: number, cardData: createCardData) {
+	if (!cardData) {
 		throw { type: "unprocessable_entity" };
 	}
 
-	const cardExists = await cardsRepository.findCardByTitleAndUserId(id, title);
+	const cardExists = await cardsRepository.findCardByTitleAndUserId(
+		id,
+		cardData.title
+	);
 	if (cardExists) throw { type: "conflict" };
 
-	await cardsRepository.createCard(
-		id,
-		title,
-		number,
-		name,
-		code,
-		expireIn,
-		password,
-		virtual,
-		typeId
-	);
+	await cardsRepository.createCard(id, cardData);
 }
 
 export async function getCards(id: number) {

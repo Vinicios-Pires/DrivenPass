@@ -1,5 +1,7 @@
 import prisma from "../config/database.js";
 
+import { createCardData } from "../services/cardsService.js";
+
 export async function findCardByTitleAndUserId(id: number, title: string) {
 	const card = await prisma.card.findFirst({
 		where: {
@@ -11,28 +13,18 @@ export async function findCardByTitleAndUserId(id: number, title: string) {
 	return card;
 }
 
-export async function createCard(
-	id: number,
-	title: string,
-	number: number,
-	name: string,
-	code: number,
-	expireIn: Date,
-	password: number,
-	virtual: boolean,
-	typeId: number
-) {
+export async function createCard(id: number, cardData: createCardData) {
 	await prisma.card.create({
 		data: {
 			userId: id,
-			title,
-			number,
-			name,
-			code,
-			expireIn,
-			password,
-			virtual,
-			typeId,
+			title: cardData.title,
+			number: cardData.number,
+			name: cardData.name,
+			code: cardData.code,
+			expireIn: cardData.expireIn,
+			password: cardData.password,
+			virtual: cardData.virtual,
+			typeId: cardData.typeId,
 		},
 	});
 }
@@ -41,6 +33,27 @@ export async function getCards(id: number) {
 	const cards = await prisma.card.findMany({
 		where: {
 			userId: id,
+		},
+		select: {
+			id: true,
+			user: {
+				select: {
+					id: true,
+					email: true,
+				},
+			},
+			title: true,
+			number: true,
+			name: true,
+			password: true,
+			code: true,
+			expireIn: true,
+			virtual: true,
+			type: {
+				select: {
+					type: true,
+				},
+			},
 		},
 	});
 
@@ -52,6 +65,27 @@ export async function getCardByIdAndUserId(userId: number, id: number) {
 		where: {
 			id,
 			userId,
+		},
+		select: {
+			id: true,
+			user: {
+				select: {
+					id: true,
+					email: true,
+				},
+			},
+			title: true,
+			number: true,
+			name: true,
+			password: true,
+			code: true,
+			expireIn: true,
+			virtual: true,
+			type: {
+				select: {
+					type: true,
+				},
+			},
 		},
 	});
 
