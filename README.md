@@ -1,5 +1,5 @@
 # Usage
-
+```
 $ git clone https://github.com/Vinicios-Pires/DrivenPass.git
 
 $ cd DrivenPass
@@ -7,7 +7,7 @@ $ cd DrivenPass
 $ npm install
 
 $ npm run dev
-
+```
 #
 
 # API:
