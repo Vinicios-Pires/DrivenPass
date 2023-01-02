@@ -1,6 +1,6 @@
 # Usage
 ```
-$ git clone https://github.com/Vinicios-Pires/DrivenPass.git
+$ git clone https://github.com/Vinicios-Pires/SecurePass.git
 
 $ cd DrivenPass
 
