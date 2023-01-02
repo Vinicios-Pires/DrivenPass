@@ -2,7 +2,7 @@
 ```
 $ git clone https://github.com/Vinicios-Pires/SecurePass.git
 
-$ cd DrivenPass
+$ cd SecurePass
 
 $ npm install
 
